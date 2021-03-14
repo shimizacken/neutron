@@ -1,35 +1,49 @@
-import { Watcher, Neutron } from "./types";
+import { Watcher, Neutron, Behavior } from "./types";
 
 /**
  * Neutron observer
  */
-export const neutron = <T>(previousState?: T): Neutron<T> => {
+export const neutron = <T>(previousState?: T) => (
+  behavior: Behavior = "default"
+): Neutron<T> => {
   const watchers = new Set<Watcher<T>>();
+  let emitted = false;
+
   /**
    * unsubscribes from current neutron
-   * @param fnToRemove
    */
   const abandon = (watcherToRemove: Watcher<T>) =>
     watchers.delete(watcherToRemove);
 
   /**
    * subscribes to current neutron
-   * @param watcher
    */
   const watch = (watcher: Watcher<T>) => {
     watchers.add(watcher);
 
+    if (behavior === "re-emit for new watcher" && emitted === true) {
+      emitToSingleWatcher(watcher, previousState);
+    }
+
     return () => abandon(watcher);
   };
 
+  const emitToSingleWatcher = (
+    watcher: Watcher<T>,
+    nextState?: T,
+    previousState?: T
+  ) => watcher(nextState, previousState);
+
   /**
    * fires new data to all observers
-   * @param data
    */
-  const emit = (next?: T) => {
-    watchers.forEach((fn) => fn(next, previousState));
+  const emit = (nextState?: T) => {
+    watchers.forEach((watcher) =>
+      emitToSingleWatcher(watcher, nextState, previousState)
+    );
 
-    previousState = next;
+    previousState = nextState;
+    emitted = true;
   };
 
   /**
@@ -48,4 +62,5 @@ export const neutron = <T>(previousState?: T): Neutron<T> => {
 /**
  * create a Neutron observer
  */
-export const createNeutron = <T>(): Neutron<T> => neutron();
+export const createNeutron = <T>(behavior?: Behavior): Neutron<T> =>
+  neutron<T>()(behavior);
