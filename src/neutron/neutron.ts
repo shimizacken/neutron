@@ -1,10 +1,10 @@
-import { Watcher, Neutron, Behavior } from "./types";
+import { Watcher, Neutron, NeutronType } from "./types";
 
 /**
  * Neutron observer
  */
 export const neutron = <T>(previousState?: T) => (
-  behavior: Behavior = "default"
+  behavior: NeutronType = NeutronType.Default
 ): Neutron<T> => {
   const watchers = new Set<Watcher<T>>();
   let emitted = false;
@@ -21,7 +21,7 @@ export const neutron = <T>(previousState?: T) => (
   const watch = (watcher: Watcher<T>) => {
     watchers.add(watcher);
 
-    if (behavior === "re-emit for new watcher" && emitted === true) {
+    if (behavior === NeutronType.ReEmit && emitted === true) {
       emitToSingleWatcher(watcher, previousState);
     }
 
@@ -62,5 +62,5 @@ export const neutron = <T>(previousState?: T) => (
 /**
  * create a Neutron observer
  */
-export const createNeutron = <T>(behavior?: Behavior): Neutron<T> =>
+export const createNeutron = <T>(behavior?: NeutronType): Neutron<T> =>
   neutron<T>()(behavior);

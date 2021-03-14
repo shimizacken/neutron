@@ -1,4 +1,5 @@
 import { createNeutron } from "../neutron";
+import { NeutronType } from "../types";
 
 describe("neutron test suite", () => {
   describe("create neutron", () => {
@@ -96,11 +97,24 @@ describe("neutron test suite", () => {
   });
 
   describe("behavior", () => {
+    it("should emit without watcher", () => {
+      const callBack1 = jest.fn();
+      const callBack2 = jest.fn();
+
+      const colorsNeutron = createNeutron(NeutronType.ReEmit);
+
+      colorsNeutron.emit();
+
+      colorsNeutron.watch(callBack1);
+
+      expect(callBack1).toHaveBeenCalledTimes(1);
+    });
+
     it("should re-emit once, after new watcher added", () => {
       const callBack1 = jest.fn();
       const callBack2 = jest.fn();
       const callBack3 = jest.fn();
-      const colorsNeutron = createNeutron("re-emit for new watcher");
+      const colorsNeutron = createNeutron(NeutronType.ReEmit);
 
       colorsNeutron.watch(callBack1);
       colorsNeutron.emit();
