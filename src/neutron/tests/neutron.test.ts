@@ -109,10 +109,13 @@ describe("neutron test suite", () => {
 
       colorsNeutron.watch(callBack2);
 
+      expect(callBack1).toHaveBeenCalledTimes(1);
       expect(callBack2).toHaveBeenCalledTimes(1);
 
       colorsNeutron.watch(callBack3);
 
+      expect(callBack1).toHaveBeenCalledTimes(1);
+      expect(callBack2).toHaveBeenCalledTimes(1);
       expect(callBack3).toHaveBeenCalledTimes(1);
 
       colorsNeutron.emit();
