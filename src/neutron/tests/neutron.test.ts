@@ -9,7 +9,7 @@ describe("neutron test suite", () => {
     });
   });
 
-  describe("watchers", () => {
+  describe("watch", () => {
     it("should return empty watchers list", () => {
       const colorsNeutron = createNeutron<string>();
 
@@ -44,6 +44,54 @@ describe("neutron test suite", () => {
       abandon();
 
       expect(colorsNeutron.getWatchers()).toMatchSnapshot();
+    });
+  });
+
+  describe("emit", () => {
+    it("should emit once", () => {
+      const callBack = jest.fn();
+      const colorsNeutron = createNeutron();
+
+      colorsNeutron.watch(callBack);
+      colorsNeutron.emit();
+
+      expect(callBack).toHaveBeenCalledTimes(1);
+    });
+
+    it("should emit once when watch before one emit", () => {
+      const callBack = jest.fn();
+      const colorsNeutron = createNeutron();
+
+      colorsNeutron.emit();
+      colorsNeutron.watch(callBack);
+      colorsNeutron.emit();
+
+      expect(callBack).toHaveBeenCalledTimes(1);
+    });
+
+    it("should emit 2 times when watch before 2 emits", () => {
+      const callBack = jest.fn();
+      const colorsNeutron = createNeutron();
+
+      colorsNeutron.emit();
+      colorsNeutron.watch(callBack);
+      colorsNeutron.emit();
+      colorsNeutron.emit();
+
+      expect(callBack).toHaveBeenCalledTimes(2);
+    });
+
+    it("should callback not called after abandon watch", () => {
+      const callBack = jest.fn();
+      const colorsNeutron = createNeutron();
+
+      const abandon = colorsNeutron.watch(callBack);
+
+      abandon();
+
+      colorsNeutron.emit();
+
+      expect(callBack).toHaveBeenCalledTimes(0);
     });
   });
 });
