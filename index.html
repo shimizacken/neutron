@@ -1,14 +1,42 @@
 <html>
   <head>
-    <title>Parcel Sandbox</title>
+    <title>Neutron</title>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/main.css" />
   </head>
 
-  <body style="background-color: #1e1e1e">
-    <div id="app">
-      <img src="src/assets/logo/neutron-logo.png" />
+  <body>
+    <div id="app" class="main-wrapper">
+      <div class="main-info">
+          <div>
+            <img class="main-logo" src="src/assets/logo/neutron-logo.png" />
+          </div>
+          <div>
+            <h1>Neutron</h1>
+          </div>
+          <div class="normal-text">
+            Lightweight and simple library implementation of
+            <a
+              href="https://en.wikipedia.org/wiki/Observer_pattern"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              >observer pattern</a
+            >
+          </div>
+          <div>
+        </div>  
+      </div>
+      <div>
+        <pre>
+          export const colorsNeutron = createNeutron<string>();
+        </pre>
+      </div> 
     </div>
-
     <script src="src/index.ts"></script>
   </body>
 </html>
