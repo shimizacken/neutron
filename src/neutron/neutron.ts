@@ -7,6 +7,8 @@ export const neutron = <T>(previousState?: T) => (
   behavior: Behavior = "default"
 ): Neutron<T> => {
   const watchers = new Set<Watcher<T>>();
+  let emitted = false;
+
   /**
    * unsubscribes from current neutron
    * @param fnToRemove
@@ -21,7 +23,7 @@ export const neutron = <T>(previousState?: T) => (
   const watch = (watcher: Watcher<T>) => {
     watchers.add(watcher);
 
-    if (behavior === "re-emit for new watcher" && watchers.size > 1) {
+    if (behavior === "re-emit for new watcher" && emitted === true) {
       emitToSingleWatcher(watcher, previousState);
     }
 
@@ -39,6 +41,7 @@ export const neutron = <T>(previousState?: T) => (
     watchers.forEach((fn) => fn(next, previousState));
 
     previousState = next;
+    emitted = true;
   };
 
   /**

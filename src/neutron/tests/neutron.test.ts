@@ -96,9 +96,10 @@ describe("neutron test suite", () => {
   });
 
   describe("behavior", () => {
-    it("should re-emit once, after new watcher added", () => {
+    it.only("should re-emit once, after new watcher added", () => {
       const callBack1 = jest.fn();
       const callBack2 = jest.fn();
+      const callBack3 = jest.fn();
       const colorsNeutron = createNeutron("re-emit for new watcher");
 
       colorsNeutron.watch(callBack1);
@@ -109,6 +110,16 @@ describe("neutron test suite", () => {
       colorsNeutron.watch(callBack2);
 
       expect(callBack2).toHaveBeenCalledTimes(1);
+
+      colorsNeutron.watch(callBack3);
+
+      expect(callBack3).toHaveBeenCalledTimes(1);
+
+      colorsNeutron.emit();
+
+      expect(callBack1).toHaveBeenCalledTimes(2);
+      expect(callBack2).toHaveBeenCalledTimes(2);
+      expect(callBack3).toHaveBeenCalledTimes(2);
     });
   });
 });
