@@ -1,9 +1,11 @@
-import { Watcher, Neutron } from "./types";
+import { Watcher, Neutron, Behavior } from "./types";
 
 /**
  * Neutron observer
  */
-export const neutron = <T>(previousState?: T): Neutron<T> => {
+export const neutron = <T>(previousState?: T) => (
+  behavior: Behavior = "default"
+): Neutron<T> => {
   const watchers = new Set<Watcher<T>>();
   /**
    * unsubscribes from current neutron
@@ -18,6 +20,10 @@ export const neutron = <T>(previousState?: T): Neutron<T> => {
    */
   const watch = (watcher: Watcher<T>) => {
     watchers.add(watcher);
+
+    if (behavior === "re-emit" && watchers.size > 1) {
+      emit(previousState);
+    }
 
     return () => abandon(watcher);
   };
@@ -48,4 +54,5 @@ export const neutron = <T>(previousState?: T): Neutron<T> => {
 /**
  * create a Neutron observer
  */
-export const createNeutron = <T>(): Neutron<T> => neutron();
+export const createNeutron = <T>(behavior?: Behavior): Neutron<T> =>
+  neutron<T>()(behavior);
