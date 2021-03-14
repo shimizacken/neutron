@@ -1,24 +1,25 @@
-import { Observer, Neutron } from "./types";
+import { Watcher, Neutron } from "./types";
 
 /**
  * Neutron observer
  */
 export const neutron = <T>(previousState?: T): Neutron<T> => {
-  const observers = new Set<Observer<T>>();
+  const watchers = new Set<Watcher<T>>();
   /**
    * unsubscribes from current neutron
    * @param fnToRemove
    */
-  const leave = (fnToRemove: Observer<T>) => observers.delete(fnToRemove);
+  const abandon = (watcherToRemove: Watcher<T>) =>
+    watchers.delete(watcherToRemove);
 
   /**
    * subscribes to current neutron
-   * @param observer
+   * @param watcher
    */
-  const watch = (observer: Observer<T>) => {
-    observers.add(observer);
+  const watch = (watcher: Watcher<T>) => {
+    watchers.add(watcher);
 
-    return () => leave(observer);
+    return () => abandon(watcher);
   };
 
   /**
@@ -26,15 +27,21 @@ export const neutron = <T>(previousState?: T): Neutron<T> => {
    * @param data
    */
   const emit = (next?: T) => {
-    observers.forEach((fn) => fn(next, previousState));
+    watchers.forEach((fn) => fn(next, previousState));
 
     previousState = next;
   };
 
+  /**
+   * return array of current watchers
+   */
+  const getWatchers = () => Array.from(watchers);
+
   return {
     watch,
-    leave,
+    abandon,
     emit,
+    getWatchers,
   };
 };
 

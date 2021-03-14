@@ -1,7 +1,6 @@
-import { createNeutron } from "./neutron";
 import { colorsNeutron, numbersNeutron } from "./examples/neutrons";
 
-const remove = colorsNeutron.watch((next, previous) => {
+const abandonWatcher = colorsNeutron.watch((next, previous) => {
   console.log("next", next, "previous", previous);
 });
 
@@ -11,7 +10,7 @@ colorsNeutron.emit("green");
 colorsNeutron.emit("blue");
 colorsNeutron.emit("pink");
 
-remove();
+abandonWatcher();
 
 colorsNeutron.emit("orange");
 
