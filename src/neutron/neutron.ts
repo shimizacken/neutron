@@ -1,14 +1,10 @@
 import { Observer, Neutron } from "./types";
 
 /**
- * create a Neutron observer
+ * Neutron observer
  */
-export const createNeutron = <T>(): Neutron<T> => {
+export const neutron = <T>(previousState?: T): Neutron<T> => {
   const observers = new Set<Observer<T>>();
-  const previousState: Record<string, T | undefined> = {
-    state: undefined,
-  };
-
   /**
    * unsubscribes from current neutron
    * @param fnToRemove
@@ -30,9 +26,9 @@ export const createNeutron = <T>(): Neutron<T> => {
    * @param data
    */
   const emit = (next?: T) => {
-    observers.forEach((fn) => fn(next, previousState.state));
+    observers.forEach((fn) => fn(next, previousState));
 
-    previousState.state = next;
+    previousState = next;
   };
 
   return {
@@ -41,3 +37,8 @@ export const createNeutron = <T>(): Neutron<T> => {
     emit,
   };
 };
+
+/**
+ * create a Neutron observer
+ */
+export const createNeutron = <T>(): Neutron<T> => neutron();
