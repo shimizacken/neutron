@@ -99,7 +99,7 @@ describe("neutron test suite", () => {
     it("should re-emit once, after new watcher added", () => {
       const callBack1 = jest.fn();
       const callBack2 = jest.fn();
-      const colorsNeutron = createNeutron("re-emit");
+      const colorsNeutron = createNeutron("re-emit for new watcher");
 
       colorsNeutron.watch(callBack1);
       colorsNeutron.emit();

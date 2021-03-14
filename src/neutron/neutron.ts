@@ -21,7 +21,7 @@ export const neutron = <T>(previousState?: T) => (
   const watch = (watcher: Watcher<T>) => {
     watchers.add(watcher);
 
-    if (behavior === "re-emit" && watchers.size > 1) {
+    if (behavior === "re-emit for new watcher" && watchers.size > 1) {
       emit(previousState);
     }
 
