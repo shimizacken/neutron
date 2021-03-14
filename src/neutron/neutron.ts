@@ -22,11 +22,14 @@ export const neutron = <T>(previousState?: T) => (
     watchers.add(watcher);
 
     if (behavior === "re-emit for new watcher" && watchers.size > 1) {
-      emit(previousState);
+      emitToSingleWatcher(watcher, previousState);
     }
 
     return () => abandon(watcher);
   };
+
+  const emitToSingleWatcher = (watcher: Watcher<T>, nextState?: T) =>
+    watcher(nextState);
 
   /**
    * fires new data to all observers
