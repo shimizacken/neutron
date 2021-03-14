@@ -7,9 +7,19 @@ describe("neutron test suite", () => {
 
       expect(colorsNeutron).toMatchSnapshot();
     });
+  });
 
+  describe("watchers", () => {
     it("should return empty watchers list", () => {
       const colorsNeutron = createNeutron<string>();
+
+      expect(colorsNeutron.getWatchers()).toMatchSnapshot();
+    });
+
+    it("should return watcher list with single watcher", () => {
+      const colorsNeutron = createNeutron();
+
+      colorsNeutron.watch(() => {});
 
       expect(colorsNeutron.getWatchers()).toMatchSnapshot();
     });
@@ -20,6 +30,18 @@ describe("neutron test suite", () => {
       colorsNeutron.watch(() => {});
       colorsNeutron.watch(() => {});
       colorsNeutron.watch(() => {});
+
+      expect(colorsNeutron.getWatchers()).toMatchSnapshot();
+    });
+
+    it("should remove watcher from the watchers list", () => {
+      const colorsNeutron = createNeutron();
+
+      const abandon = colorsNeutron.watch(() => {});
+      colorsNeutron.watch(() => {});
+      colorsNeutron.watch(() => {});
+
+      abandon();
 
       expect(colorsNeutron.getWatchers()).toMatchSnapshot();
     });

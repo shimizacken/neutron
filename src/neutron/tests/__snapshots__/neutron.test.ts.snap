@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`neutron test suite create neutron should return empty watchers list 1`] = `Array []`;
-
 exports[`neutron test suite create neutron should return new neutron 1`] = `
 Object {
   "abandon": [Function],
@@ -11,10 +9,25 @@ Object {
 }
 `;
 
-exports[`neutron test suite create neutron should return watcher list with 3 watchers 1`] = `
+exports[`neutron test suite watchers should remove watcher from the watchers list 1`] = `
 Array [
   [Function],
   [Function],
+]
+`;
+
+exports[`neutron test suite watchers should return empty watchers list 1`] = `Array []`;
+
+exports[`neutron test suite watchers should return watcher list with 3 watchers 1`] = `
+Array [
+  [Function],
+  [Function],
+  [Function],
+]
+`;
+
+exports[`neutron test suite watchers should return watcher list with single watcher 1`] = `
+Array [
   [Function],
 ]
 `;
