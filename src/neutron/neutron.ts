@@ -11,14 +11,12 @@ export const neutron = <T>(previousState?: T) => (
 
   /**
    * unsubscribes from current neutron
-   * @param fnToRemove
    */
   const abandon = (watcherToRemove: Watcher<T>) =>
     watchers.delete(watcherToRemove);
 
   /**
    * subscribes to current neutron
-   * @param watcher
    */
   const watch = (watcher: Watcher<T>) => {
     watchers.add(watcher);
@@ -38,14 +36,13 @@ export const neutron = <T>(previousState?: T) => (
 
   /**
    * fires new data to all observers
-   * @param data
    */
-  const emit = (next?: T) => {
+  const emit = (nextState?: T) => {
     watchers.forEach((watcher) =>
-      emitToSingleWatcher(watcher, next, previousState)
+      emitToSingleWatcher(watcher, nextState, previousState)
     );
 
-    previousState = next;
+    previousState = nextState;
     emitted = true;
   };
 
