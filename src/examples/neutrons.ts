@@ -1,4 +1,4 @@
-import { createNeutron } from "./neutron";
+import { createNeutron } from "../neutron";
 
 export const colorsNeutron = createNeutron<string>();
 

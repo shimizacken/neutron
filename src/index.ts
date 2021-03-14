@@ -1,5 +1,5 @@
 import { createNeutron } from "./neutron";
-import { colorsNeutron, numbersNeutron } from "./neutrons";
+import { colorsNeutron, numbersNeutron } from "./examples/neutrons";
 
 const remove = colorsNeutron.watch((next, previous) => {
   console.log("next", next, "previous", previous);
