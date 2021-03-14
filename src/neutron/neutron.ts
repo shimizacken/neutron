@@ -30,15 +30,20 @@ export const neutron = <T>(previousState?: T) => (
     return () => abandon(watcher);
   };
 
-  const emitToSingleWatcher = (watcher: Watcher<T>, nextState?: T) =>
-    watcher(nextState);
+  const emitToSingleWatcher = (
+    watcher: Watcher<T>,
+    nextState?: T,
+    previousState?: T
+  ) => watcher(nextState, previousState);
 
   /**
    * fires new data to all observers
    * @param data
    */
   const emit = (next?: T) => {
-    watchers.forEach((fn) => fn(next, previousState));
+    watchers.forEach((watcher) =>
+      emitToSingleWatcher(watcher, next, previousState)
+    );
 
     previousState = next;
     emitted = true;

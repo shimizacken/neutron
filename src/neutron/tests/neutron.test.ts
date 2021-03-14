@@ -96,7 +96,7 @@ describe("neutron test suite", () => {
   });
 
   describe("behavior", () => {
-    it.only("should re-emit once, after new watcher added", () => {
+    it("should re-emit once, after new watcher added", () => {
       const callBack1 = jest.fn();
       const callBack2 = jest.fn();
       const callBack3 = jest.fn();
