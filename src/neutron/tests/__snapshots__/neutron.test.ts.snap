@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`neutron test suite should return 1`] = `
+Object {
+  "emit": [Function],
+  "leave": [Function],
+  "watch": [Function],
+}
+`;
