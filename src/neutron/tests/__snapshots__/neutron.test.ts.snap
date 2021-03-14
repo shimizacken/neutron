@@ -4,9 +4,9 @@ exports[`neutron test suite create neutron should return empty watchers list 1`]
 
 exports[`neutron test suite create neutron should return new neutron 1`] = `
 Object {
+  "abandon": [Function],
   "emit": [Function],
   "getWatchers": [Function],
-  "leave": [Function],
   "watch": [Function],
 }
 `;
