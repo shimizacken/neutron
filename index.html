@@ -11,11 +11,32 @@
   </head>
 
   <body>
-    <h1>Neutron</h1>
-    <div id="app">
-      <img src="src/assets/logo/neutron-logo.png" />
+    <div id="app" class="main-wrapper">
+      <div class="main-info">
+          <div>
+            <img class="main-logo" src="src/assets/logo/neutron-logo.png" />
+          </div>
+          <div>
+            <h1>Neutron</h1>
+          </div>
+          <div class="normal-text">
+            Lightweight and simple library implementation of
+            <a
+              href="https://en.wikipedia.org/wiki/Observer_pattern"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              >observer pattern</a
+            >
+          </div>
+          <div>
+        </div>  
+      </div>
+      <div>
+        <pre>
+          export const colorsNeutron = createNeutron<string>();
+        </pre>
+      </div> 
     </div>
-
     <script src="src/index.ts"></script>
   </body>
 </html>
