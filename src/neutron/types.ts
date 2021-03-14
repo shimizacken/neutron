@@ -1,6 +1,6 @@
 export type Watcher<T> = (next?: T, previous?: T) => void;
 
-export type Behavior = "re-emit" | "default";
+export type Behavior = "default" | "re-emit";
 
 export interface Neutron<T> {
   watch: (watcher: Watcher<T>) => () => boolean;
