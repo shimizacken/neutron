@@ -11,7 +11,6 @@ const abandonWatcher = colorsNeutron.watch((next, previous) => {
   console.log("next", next, "previous", previous);
 });
 
-console.clear();
 colorsNeutron.emit("red"); // next red previous undefined
 colorsNeutron.emit("green"); // next green previous red
 

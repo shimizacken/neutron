@@ -3,11 +3,10 @@ import { Watcher, Neutron, NeutronType } from "./types";
 /**
  * Neutron observer
  */
-export const neutron = <T>(previousState?: T) => (
+export const neutron = <T>(previousState?: T, emitted = false) => (
   behavior: NeutronType = NeutronType.Default
 ): Neutron<T> => {
   const watchers = new Set<Watcher<T>>();
-  let emitted = false;
 
   /**
    * unsubscribes from current neutron
