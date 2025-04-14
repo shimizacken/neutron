@@ -4,6 +4,8 @@
     "module": "commonjs",
     "jsx": "preserve",
     "esModuleInterop": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "sourceMap": true,
     "allowJs": true,
     "lib": [

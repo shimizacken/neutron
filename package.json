@@ -5,9 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build src/neutron/index.ts --no-cache --no-content-hash",
+    "build": "parcel build src/neutron/index.ts --no-cache --no-content-hash && yarn types",
     "test": "jest",
-    "test-watch": "yarn test -- --watch"
+    "test-watch": "yarn test -- --watch",
+    "types": "tsc"
   },
   "dependencies": {},
   "devDependencies": {
