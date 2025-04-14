@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Observer pattern",
   "main": "dist/index.js",
+  "types": "dist/neutron/index.d.ts",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build src/neutron/index.ts --no-cache --no-content-hash && yarn types",
+    "build": " yarn types && parcel build src/neutron/index.ts --no-cache --no-content-hash",
     "test": "jest",
     "test-watch": "yarn test -- --watch",
     "types": "tsc"

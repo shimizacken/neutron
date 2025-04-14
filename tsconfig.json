@@ -15,5 +15,6 @@
     ],
     "rootDir": "src",
     "moduleResolution": "node"
-  }
+  },
+  "include": ["src/neutron/"]
 }
