@@ -2,16 +2,24 @@
   "name": "neutron",
   "version": "1.0.0",
   "description": "Observer pattern",
-  "main": "index.html",
+  "main": "dist/index.js",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html",
+    "build": "parcel build --no-cache --no-content-hash",
     "test": "jest",
     "test-watch": "yarn test -- --watch"
   },
-  "dependencies": {
-    "parcel-bundler": "^1.6.1"
+  "neutron-prod": "dist/index.js",
+  "neutron-dev": "dist/index.js",
+  "targets": {
+    "neutron-prod": {
+      "context": "browser",
+      "source": "src/neutron/index.ts",
+      "distDir": "dist",
+      "publicUrl": "./"
+    }
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
@@ -19,6 +27,7 @@
     "@types/jest": "^26.0.20",
     "babel-jest": "^26.6.3",
     "jest": "^26.6.3",
+    "parcel": "^2.14.4",
     "ts-jest": "^26.5.3",
     "typescript": "^4.2.3"
   },
