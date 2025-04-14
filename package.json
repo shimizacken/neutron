@@ -5,19 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build --no-cache --no-content-hash",
+    "build": "parcel build src/neutron/index.ts --no-cache --no-content-hash",
     "test": "jest",
     "test-watch": "yarn test -- --watch"
-  },
-  "neutron-prod": "dist/index.js",
-  "neutron-dev": "dist/index.js",
-  "targets": {
-    "neutron-prod": {
-      "context": "browser",
-      "source": "src/neutron/index.ts",
-      "distDir": "dist",
-      "publicUrl": "./"
-    }
   },
   "dependencies": {},
   "devDependencies": {
