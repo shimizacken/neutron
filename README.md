@@ -10,6 +10,17 @@ It provides a simple, intuitive API for creating, subscribing to, and emitting s
 - 🧩 **Decoupled Architecture** – reduce tight coupling between components
 - 🧪 **Test-Friendly** – designed for predictable behavior in unit tests
 
+## Installation
+
+Usage in `packge.json` file
+
+```
+"dependencies": {
+    "neutron": "https://github.com/shimizacken/neutron/archive/refs/tags/v1.0.1.tar.gz",
+  }
+}
+```
+
 ## Usage example
 
 ```typescript
