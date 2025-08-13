@@ -1,7 +1,7 @@
 # Neutron
 
 <p align="center">
-   <img src="./src/assets/logo/neutron-logo.png" alt="Neutron Logo" width="100" />
+   <img width="280" src="https://github.com/user-attachments/assets/c0ad07e8-8b91-43a8-90d9-80021eab164e" />
 </p>
 
 **Neutron** is a lightweight, high-performance **signal library** for managing event-driven communication in JavaScript and TypeScript applications.  
