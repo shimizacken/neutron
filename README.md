@@ -1,4 +1,8 @@
-# <img src="./src/assets/logo/neutron-logo.png" alt="Neutron Logo" width="100" /> Neutron
+# Neutron
+
+<p align="center">
+   <img src="./src/assets/logo/neutron-logo.png" alt="Neutron Logo" width="100" />
+</p>
 
 **Neutron** is a lightweight, high-performance **signal library** for managing event-driven communication in JavaScript and TypeScript applications.  
 It provides a simple, intuitive API for creating, subscribing to, and emitting signals, enabling clean decoupling between components.
